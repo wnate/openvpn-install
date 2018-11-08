@@ -780,7 +780,8 @@ tls-server
 tls-version-min 1.2
 tls-cipher $CC_CIPHER
 status /var/log/openvpn/status.log
-verb 3" >> /etc/openvpn/server.conf
+verb 3
+duplicate-cn" >> /etc/openvpn/server.conf
 
 	# Create log dir
 	mkdir -p /var/log/openvpn
@@ -925,7 +926,8 @@ tls-client
 tls-version-min 1.2
 tls-cipher $CC_CIPHER
 setenv opt block-outside-dns # Prevent Windows 10 DNS leak
-verb 3" >> /etc/openvpn/client-template.txt
+verb 3
+redirect-gateway def1" >> /etc/openvpn/client-template.txt
 
 if [[ $COMPRESSION_ENABLED == "y"  ]]; then
 	echo "compress $COMPRESSION_ALG" >> /etc/openvpn/client-template.txt
